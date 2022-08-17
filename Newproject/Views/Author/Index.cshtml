@@ -1,0 +1,81 @@
+﻿@model ICollection<Author>
+
+<div class="container col-md-6 text-center mt-5">
+    @if (@TempData["message"] != null)
+    {
+        <p class="alert alert-danger">@TempData["message"]</p>
+    }
+    <table class="table table-bordered">
+        @if (User.Identity.IsAuthenticated && User.IsInRole("StoreOwner"))
+        {
+            <tr>
+                <th colspan="2">Author List</th>
+                <th><a asp-controller="Author" asp-action="Add">Add new author</a></th>
+
+            </tr>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>Actions</th>
+
+            </tr>
+            @foreach (var author in Model)
+            {
+                <tr>
+                    <td>@author.Id</td>
+
+                    <td>
+                        <a class="font-weight-bold" asp-controller="Author" asp-action="Detail" asp-route-id="@author.Id">
+                            @author.Name
+                        </a>
+                    </td>
+                    <td>@author.Email</td>
+                    <td>@author.Age</td>
+
+                    <td>
+                        <a asp-controller="Author" asp-action="Edit" class="btn btn-warning" asp-route-id="@author.Id">Edit</a>
+                        <a onclick="return confirm(" Are you want to delete this author ?")" asp-controller="Author" asp-action="Delete" class="btn btn-danger" asp-route-id="@author.Id">Delete</a>
+
+                    </td>
+
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <th colspan="2">Author List</th>
+
+
+            </tr>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+               
+                <th>Email</th>
+                <th>Age</th>
+
+
+            </tr>
+            @foreach (var author in Model)
+            {
+                <tr>
+                    <td>@author.Id</td>
+
+                    <td>
+                        <a class="font-weight-bold" asp-controller="Author" asp-action="Detail" asp-route-id="@author.Id">
+                            @author.Name
+                        </a>
+                    </td>
+                    <td>@author.Email</td>
+                    <td>@author.Age</td>
+
+                </tr>
+            }
+        }
+
+
+    </table>
+</div>

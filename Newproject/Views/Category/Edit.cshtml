@@ -1,0 +1,15 @@
+﻿@model Assignment.Models.Category
+
+<form class="card p-3 bg-light" asp-controller="Category" asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <h3 class="text text-primary">Edit a category</h3>
+    <div class="form-group">
+        <label class="form-control" asp-for="Name" class="text text-success"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text text-warning"></span>
+    </div>
+    <div class="form-group">
+        <input class="btn btn-primary" type="submit" value="Edit" />
+    </div>
+
+</form>

@@ -1,0 +1,24 @@
+﻿@model Assignment.Models.Author
+
+<form class="card p-3 bg-light" asp-controller="Author" asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <h3 class="text text-primary">Edit an author</h3>
+    <div class="form-group">
+        <label class="form-control" asp-for="Name" class="text text-success"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text text-warning"></span>
+    </div>
+    <div class="form-group">
+        <label class="form-control" asp-for="Email" class="text text-success"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text text-warning"></span>
+    </div>
+    <div class="form-group">
+        <label class="form-control" asp-for="Age" class="text text-success"></label>
+        <input asp-for="Age" class="form-control" />
+        <span asp-validation-for="Age" class="text text-warning"></span>
+    </div>
+    <div class="form-group">
+        <input class="btn btn-primary" type="submit" value="Edit" />
+    </div>
+</form>

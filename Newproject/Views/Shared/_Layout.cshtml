@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Assignment</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="https://media.istockphoto.com/vectors/open-book-color-vector-template-icon-vector-id1197901679?k=20&m=1197901679&s=612x612&w=0&h=QjmxcWwrj_D_IHgwt-9dvAdChyI1Vtr8bmQquYVkLE4=" width="100" height="100" />
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <partial name="_LoginPartial" />
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="h3 text text-success ml-3" asp-area="" asp-controller="Category" asp-action="Index">Category</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="h3 text text-success ml-3" asp-area="" asp-controller="Order" asp-action="Index">Order</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="h3 text text-success ml-3" asp-area="" asp-controller="Request" asp-action="Index">Request</a>
+                            </li>
+                        </ul>
+                    }
+                    else if (User.Identity.IsAuthenticated && User.IsInRole("Customer"))
+                    {
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="h3 text text-primary" asp-area="" asp-controller="Book" asp-action="Store">Store</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="h3 text text-success ml-3" asp-area="" asp-controller="Order" asp-action="IndexForCurrent">Order</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="h3 text text-success ml-3" asp-area="" asp-controller="Author" asp-action="Index">Author</a>
+                            </li>
+                        </ul>
+                    }
+                    else if (User.Identity.IsAuthenticated && User.IsInRole("StoreOwner"))
+                    {
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="h3 text text-primary" asp-area="" asp-controller="Book" asp-action="Index">Book</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="h3 text text-success ml-3" asp-area="" asp-controller="Author" asp-action="Index">Author</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="h3 text text-success ml-3" asp-area="" asp-controller="Request" asp-action="MakeRequest">Request</a>
+                            </li>
+                        </ul>
+                    }
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - Assignment - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

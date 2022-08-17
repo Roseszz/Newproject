@@ -1,0 +1,52 @@
+﻿@model ICollection<Book>
+
+<div class="container text-center mt-3">
+    <h3 class="text text-primary mt-2 mb-2">Book Store</h3>
+
+    @if (TempData["Success"] != null)
+    {
+        <p class="alert alert-danger">@TempData["success"]</p>
+    }
+
+
+
+
+    <div class="card-group">
+        <div class="row">
+            @foreach (var Book in Model)
+            {
+                <div class="col-md-3 p-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <img class="card-img-top" src="@Book.Image" width="120" height="180">
+                            <h4 class="text text-primary mt-3">@Book.Name</h4>
+                            <h5 class="text text-success">@Book.Price $</h5>
+                        </div>
+                        @if (Book.Quantity == 0)
+                        {
+                            <div class="card-subtitle">
+                                <p class="text text-danger h2">Out of stock</p>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="card-subtitle">
+                                <h5 class="text text-danger">In-stock: @Book.Quantity</h5>
+                            </div>
+                            <div class="card-footer">
+                                <form asp-controller="Order" asp-action="Make">
+                                    <input type="hidden" name="id" value="@Book.Id" />
+                                    <input class="form-control" type="number" name="quantity" required min="1" max="@Book.Quantity">
+                                    <div class="form-group mt-3">
+                                        <input type="submit" class="btn btn-success" value="Make order"
+                                       onclick="    return confirm('Are you sure to order this Book ?');" />
+                                    </div>
+                                </form>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

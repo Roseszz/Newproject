@@ -1,0 +1,21 @@
+﻿@model Assignment.Models.Category
+
+<div class="container col-md-6 text-center mt-3">
+    <table class="table table-bordered">
+        <tr>
+            <th colspan="2" class="h3 bg-light text-success">@Model.Name</th>
+        </tr>
+        <tr>
+            <th>Book List</th>
+            <td>
+                @foreach (var book in Model.Books)
+                {
+                    <a class="font-weight-bold text-italic" asp-controller="Book" asp-action="Detail" asp-route-id="@book.Id">
+                        @book.Name
+                    </a>
+                    <br />
+                }
+            </td>
+        </tr>
+    </table>
+</div>

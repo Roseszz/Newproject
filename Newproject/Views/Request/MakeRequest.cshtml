@@ -1,0 +1,13 @@
+﻿@model Assignment.Models.Request
+
+<form class="card p-3 bg-light" asp-controller="Request" asp-action="MakeRequest" method="post">
+    <h3 class="text text-primary">Request for a new category</h3>
+    <div class="form-group">
+        <label class="form-control" class="text text-success">Name</label>
+        <input name="CategoryName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input class="btn btn-primary" type="submit" value="MakeRequest" />
+    </div>
+
+</form>
